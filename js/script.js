@@ -58,11 +58,11 @@ const quotes = [
 ***/
 /* randomQuote variable generates a random number between 0 and 5, 
 since there are 6 objects in the 'quotes' array.
-then the quote in the array is returned.
+then the quote in the array is returned and stored as 'randomlySelectedQuote'
 */
 function getRandomQuote() {
-    const randomQuote = Math.floor(Math.random() * quotes.length);
-    return quotes[randomQuote];
+    const randomQuoteNumber = Math.floor(Math.random() * quotes.length);
+    return quotes[randomQuoteNumber];
 }
 
 
@@ -70,13 +70,17 @@ function getRandomQuote() {
  * `printQuote` function
 ***/
 
-
 function printQuote() {
-    let randomlySelectedQuote = getRandomQuote();
+    const randomlySelectedQuote = getRandomQuote();
+    const quoteText = randomlySelectedQuote.quote;
+    let quoteSource = randomlySelectedQuote.source;
+    let quoteCitation = randomlySelectedQuote.citation;
+    let quoteYear = randomlySelectedQuote.year;
     let html = '';
-    html += `
-      <p>${randomlySelectedQuote.quote}</p>
-    `;
+      html += `
+        <p class = "quote">${randomlySelectedQuote.quote}</p>
+        <p class = "source">${randomlySelectedQuote.source}
+      `;
 
 }
 
