@@ -71,16 +71,15 @@ function getRandomQuote() {
 ***/
 
 function printQuote() {
-    const randomlySelectedQuote = getRandomQuote();
-    const quoteText = randomlySelectedQuote.quote;
-    let quoteSource = randomlySelectedQuote.source;
-    let quoteCitation = randomlySelectedQuote.citation;
-    let quoteYear = randomlySelectedQuote.year;
+    let randomlySelectedQuote = getRandomQuote();
     let html = '';
       html += `
         <p class = "quote">${randomlySelectedQuote.quote}</p>
+        <p class = "citation">${randomlySelectedQuote.citation}</p>
+        <p class = "year">${randomlySelectedQuote.year}</p>
         <p class = "source">${randomlySelectedQuote.source}
       `;
+      return html;
 
 }
 
