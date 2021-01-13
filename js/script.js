@@ -15,29 +15,32 @@ project 1 - A Random Quote Generator
 Selected quote objects and their properties held in an array 'quotes'.
 Each object has a quote and a source property. 
 3 quotes have a citation property. 
-6 quotes have a year property.
+4 quotes have a year property.
 */
 const quotes = [ 
     {
       quote: "Believe you can and you're halfway there.", 
       source: "Theodore Roosevelt", 
-      year: "1905"
+      citation: "",
+      year: ""
     },
     {
       quote: "Life is like riding a bicycle. To keep your balance, you must keep moving.", 
       source: "Albert Einstein", 
+      citation: "",
       year: "1930"
     },
     {
       quote: "It is never too late to be what you might have been.", 
       source: "George Eliot", 
+      citation: "",
       year: "1884"
     },
     {
       quote: "There is some good in this world, and it's worth fighting for.", 
       source: "J.R.R. Tolkien", 
       citation: "The Two Towers", 
-      year: "1954"
+      year: ""
     },
     {
       quote: "Isn't it nice to think that tomorrow is a new day with no mistakes in it yet?", 
@@ -56,9 +59,9 @@ const quotes = [
 /***
  * `getRandomQuote` function
 ***/
-/* randomQuote variable generates a random number between 0 and 5, 
+/* randomQuote function generates a random number between 0 and 5, 
 since there are 6 objects in the 'quotes' array.
-then the quote in the array is returned and stored as 'randomlySelectedQuote'
+then the quote in the array is returned and stored as 'randomlySelectedQuote' in the printQuote function
 */
 function getRandomQuote() {
     const randomQuoteNumber = Math.floor(Math.random() * quotes.length);
@@ -69,19 +72,30 @@ function getRandomQuote() {
 /***
  * `printQuote` function
 ***/
+/* printQuote function takes the randomlySelectedQuote and runs through
+if statements to add citations/years as needed
+*/
 
 function printQuote() {
-    let randomlySelectedQuote = getRandomQuote();
-    let html = '';
-      html += `
-        <p class = "quote">${randomlySelectedQuote.quote}</p>
-        <p class = "citation">${randomlySelectedQuote.citation}</p>
-        <p class = "year">${randomlySelectedQuote.year}</p>
-        <p class = "source">${randomlySelectedQuote.source}
-      `;
-      return html;
-
+    let randomlySelectedQuote = getRandomQuote(); //randomlySelectedQuote variable calls the getRandomQuote function
+    let quoteAppearing = ''; //Initializes the quoteAppearing variable as blank
+      quoteAppearing = //Changes quoteAppearing to the quote and citation
+        `<p class= "quote">${randomlySelectedQuote.quote}</p>
+         <p class= "source">${randomlySelectedQuote.source}`;
+    
+    //if statement checks to see if there is a citation for the randomlySelectedQuote
+    if (randomlySelectedQuote.citation){
+      quoteAppearing += `<span class= "citation">${randomlySelectedQuote.citation}</span>`;
+      } 
+    //if statement checks to see if there is a year for the randomlySelectedQuote   
+    if (randomlySelectedQuote.year) {
+      quoteAppearing += `<span class= "year">${randomlySelectedQuote.year}</span> `;
+    }
+    quoteAppearing += `</p>`;
+    //returns the string quoteAppearing on the page
+    document.getElementById('quote-box').innerHTML = quoteAppearing;
 }
+
 
 
 /***
